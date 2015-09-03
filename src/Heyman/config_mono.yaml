@@ -1,0 +1,16 @@
+Xmpp:
+  User: heyman
+  Password: masterkey
+  Server: jabber.example.ru
+Commands:
+- Title: "weather"
+  Regex: "^(weather|weath|)"
+  Description: "Weather in my city"
+  Arguments: "/full/path/to/monoapp -m='$MESSAGE' -u='$USER_ID ' -name='$USER_NAME'"
+  FileName: "/usr/bin/mono"
+  EndLine: "|"
+  WorkingDirectory: ./
+  UserName: root
+
+Localization:
+  HelpHeader: "Hi there. List of my commands:"
