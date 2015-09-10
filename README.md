@@ -8,10 +8,12 @@ Simple app for create XMPP chat bot helper
 
 Application wait messages from any user. If message recive? 
 
-**Heyman.exe** wait message, run command, redirect all messages to **stdin** and send all data from **stdout** to user until application closed.
+**Heyman.exe** wait message, run command app, redirect all messages to **stdin** and send all data from **stdout** to user until command application closed.
 
-**XMPP user** >--XMPP message--> **Heyman** >--stdin--> **$/you/application.exe -with=args**
-**XMPP user** <--XMPP message--< **Heyman** <--stdout-< **$/you/application.exe -with=args**
+```
+XMPP user >--XMPP message--> Heyman >--stdin--> $/you/application.exe -with=args
+XMPP user <--XMPP message--< Heyman <--stdout-< $/you/application.exe -with=args
+```
 
 ## Quick start
     
