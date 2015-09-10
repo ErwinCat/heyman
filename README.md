@@ -6,16 +6,16 @@ Simple app for create XMPP chat bot helper
 
 ### How it's work:
 
+Application wait messages from any user. If message recive? 
 
-1. You specify XMPP account, create list of commands and run **Heyman.exe** application on host.
-2. **Heyman.exe** connect to XMPP server and wait input messages from any user.
-3. **Heyman.exe** application has received the message and trying to find command.
-4. If command not found, application send answer with help message about all existing commands
-5. If command found, **Heyman.exe** run command, redirect all messages to **stdin** and send all data from **stdout** to user until application closed
+**Heyman.exe** wait message, run command, redirect all messages to **stdin** and send all data from **stdout** to user until application closed.
 
+**XMPP user** >--XMPP message--> **Heyman** >--stdin--> **$/you/application.exe -with=args**
+**XMPP user** <--XMPP message--< **Heyman** <--stdout-< **$/you/application.exe -with=args**
 
 ## Quick start
-
+    
+ 
  1. Compile project
  2. Create `config.yaml` at root file
  3. run ` /usr/bin/mono Heyman.exe config.yaml` or `Heyman.exe config.yaml`
