@@ -6,12 +6,17 @@ Simple app for create XMPP chat bot
 
 ### How it's work:
 
-Application wait messages from any user. If message recive? 
+1. *Heyman* wait XMPP message from user
+2. Search command in config file (by regex)
+3. Run command from specific user with specified args
+4. Write all XMPP messages to **stdin** 
+5. Read from **stdout** and send to XMPP user
+5. This happens as long as the command application will not closed
 
-**Heyman.exe** wait message, run command, redirect all messages to **stdin** and send all data from **stdout** to user until application closed.
-
-**XMPP user** >--XMPP message--> **Heyman** >--stdin--> **$/you/application.exe -with=args**
-**XMPP user** <--XMPP message--< **Heyman** <--stdout-< **$/you/application.exe -with=args**
+```
+XMPP user >--XMPP message--> Heyman >--stdin--> $/you/application.exe -with=args
+XMPP user <--XMPP message--< Heyman <--stdout-< $/you/application.exe -with=args
+```
 
 ## Quick start
     
