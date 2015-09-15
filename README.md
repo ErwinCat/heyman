@@ -1,6 +1,6 @@
 # Heyman
 
-Simple app for create XMPP chat bot helper
+Simple app for create XMPP chat bot
 
 > Sorry for my english
 
