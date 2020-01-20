@@ -1,5 +1,7 @@
 using System;
 using System.Linq;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Xml;
@@ -36,7 +38,9 @@ namespace Heyman
             }
 
             Logger.Trace("{0}:{1}", e.Jid, e.Message.Body);
-            InternalOnMessage(GetUser(e.Jid), GetMessage(e.Message));
+            var user = GetUser(e.Jid);
+            if (user == null) return;
+            InternalOnMessage(user, GetMessage(e.Message));
         }
 
         private string GetMessage(Message message)
@@ -47,7 +51,12 @@ namespace Heyman
         private UserInfo GetUser(Jid jid)
         {
             var bare = jid.GetBareJid();
-            var result = _client.GetRoster().First(_ => _.Jid == bare);
+            var result = _client.GetRoster().FirstOrDefault(_ => _.Jid == bare);
+            if (result == null)
+            {
+                Logger.Error($"Couldn't find user {jid} in Heyman friends. Try to clear XMPP server cache.");
+                return null;
+            }
             return new UserInfo
                    {
                        Id = jid.ToString(),
@@ -58,13 +67,16 @@ namespace Heyman
         protected override void InternalStart()
         {
             StopClient();
-            _client = new XmppClient(_xmpp.Server, _xmpp.User, _xmpp.Password);
+
+           _client = new XmppClient(_xmpp.Server, _xmpp.User, _xmpp.Password );
             
             _client.Message += OnClientMessage;
             _client.Error += OnError;
             _client.Connect();
             
         }
+
+        
 
         private void StopClient()
         {

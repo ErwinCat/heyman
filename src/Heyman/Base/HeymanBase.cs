@@ -35,6 +35,7 @@ namespace Heyman
             catch (Exception ex)
             {
                 Logger.Fatal(ex,"Error to start app");
+                throw ex;
             }
         }
 
